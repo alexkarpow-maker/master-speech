@@ -602,17 +602,24 @@
                 // Replace 'YOUR_GOOGLE_SCRIPT_URL' with your actual Google Apps Script URL
                 // This URL is generated when you deploy your Google Apps Script as a web app
                 // Example: https://script.google.com/macros/s/AKfycbxXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/exec
-                const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzHfORhbWxs65bsSU0n3QpLIppth0RmWfyY5hm7r3m7J4wcgDUbGiIcR6RtQ9Nabpcc/exec';
+               const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzHfORhbWxs65bsSU0n3QpLIppth0RmWfyY5hm7r3m7J4wcgDUbGiIcR6RtQ9Nabpcc/exec';
                 
                 // Send data to Google Sheets via Google Apps Script
-                const response = await fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors', // Important: Google Apps Script requires no-cors for simple POST
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
-                });
+              const response = await fetch(GOOGLE_SCRIPT_URL, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(data)
+});
+
+// Проверка ответа (опционально)
+if (response.ok) {
+  document.getElementById('successMessage').style.display = 'block';
+  form.reset();
+} else {
+  throw new Error('Ошибка сервера');
+};
                 
                 // Show success message (note: with no-cors, we can't check actual response)
                 document.getElementById('successMessage').style.display = 'block';
@@ -645,6 +652,7 @@
     </script>
 </body>
 </html>
+
 
 
 
