@@ -1,633 +1,117 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мастерская речи | Кабинет детского логопеда</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary: #2c5aa0;
-            --secondary: #4a7bc7;
-            --accent: #e74c3c;
-            --light: #f8f9fa;
-            --dark: #2c3e50;
-            --success: #27ae60;
-            --gradient-start: #3498db;
-            --gradient-end: #2c3e50;
-            --child-color: #ff6b6b;
-        }
-
-        body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #e8f0fe 100%);
-            color: var(--dark);
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header Styles */
-        header {
-            background: white;
-            box-shadow: 0 2px 30px rgba(0,0,0,0.15);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo i {
-            color: var(--primary);
-            font-size: 32px;
-            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .logo h1 {
-            font-size: 28px;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 35px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 600;
-            font-size: 18px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 100px 0;
-            text-align: center;
-            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,249,250,0.95) 100%);
-            border-radius: 20px;
-            margin: 40px 20px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-        }
-
-        .hero h2 {
-            font-size: 52px;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 800;
-        }
-
-        .hero p {
-            font-size: 22px;
-            max-width: 800px;
-            margin: 0 auto 25px;
-            color: var(--dark);
-            line-height: 1.8;
-        }
-
-        .hero-notice {
-            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
-            color: #856404;
-            padding: 15px 30px;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 18px;
-            margin-top: 20px;
-            display: inline-block;
-            border-left: 4px solid #ffc107;
-        }
-
-        /* Services Section */
-        .services {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-            font-size: 42px;
-            color: var(--primary);
-            font-weight: 800;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--child-color);
-            border-radius: 2px;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 35px;
-        }
-
-        .service-card {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-            text-align: center;
-            transition: all 0.4s ease;
-            border: 2px solid transparent;
-        }
-
-        .service-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.18);
-            border-color: var(--primary);
-        }
-
-        .service-card i {
-            font-size: 56px;
-            margin-bottom: 25px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .service-card h3 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: var(--dark);
-            font-weight: 700;
-        }
-
-        .service-card p {
-            color: #666;
-            font-size: 16px;
-        }
-
-        /* Form Section */
-        .form-section {
-            padding: 100px 0;
-            background: white;
-        }
-
-        .form-container {
-            max-width: 650px;
-            margin: 0 auto;
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
-            padding: 50px;
-            border-radius: 25px;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.15);
-            border: 1px solid rgba(255,255,255,0.5);
-        }
-
-        .form-title {
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 36px;
-            color: var(--primary);
-            font-weight: 800;
-        }
-
-        .form-subtitle {
-            text-align: center;
-            margin-bottom: 40px;
-            color: var(--child-color);
-            font-size: 18px;
-            font-weight: 600;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 700;
-            color: var(--dark);
-            font-size: 18px;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 15px 20px;
-            border: 2px solid #e1e8f0;
-            border-radius: 12px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            background: white;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
-        }
-
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 18px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 20px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(44, 90, 160, 0.3);
-        }
-
-        .submit-btn:active {
-            transform: translateY(0);
-        }
-
-        .success-message {
-            display: none;
-            text-align: center;
-            padding: 25px;
-            background: linear-gradient(135deg, #d4edda, #c3e6cb);
-            color: #155724;
-            border-radius: 15px;
-            margin-top: 25px;
-            font-size: 18px;
-            font-weight: 600;
-            border-left: 5px solid var(--success);
-        }
-
-        .success-message i {
-            margin-right: 10px;
-            color: var(--success);
-        }
-
-        /* Footer */
-        footer {
-            background: linear-gradient(135deg, var(--dark), #1a2530);
-            color: white;
-            padding: 60px 0 30px;
-        }
-
-        .footer-content {
-            text-align: center;
-        }
-
-        .footer-logo {
-            font-size: 28px;
-            margin-bottom: 20px;
-            font-weight: 800;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 30px 0;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: #b0c4de;
-            text-decoration: none;
-            font-size: 18px;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .copyright {
-            color: #8a9ba8;
-            font-size: 16px;
-            margin-top: 30px;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 25px;
-            }
-
-            .nav-links {
-                flex-direction: column;
-                gap: 15px;
-                align-items: center;
-            }
-
-            .hero h2 {
-                font-size: 38px;
-            }
-
-            .hero p {
-                font-size: 19px;
-            }
-
-            .section-title {
-                font-size: 32px;
-            }
-
-            .form-container {
-                padding: 30px 20px;
-            }
-
-            .form-title {
-                font-size: 28px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero {
-                padding: 60px 15px;
-                margin: 20px 10px;
-            }
-
-            .hero h2 {
-                font-size: 32px;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-links {
-                gap: 15px;
-                flex-direction: column;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Мастерская речи | Логопед для детей</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+    body { background: #f0f8ff; color: #333; line-height: 1.6; padding: 20px; }
+    .container { max-width: 700px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+    h1 { text-align: center; margin-bottom: 20px; color: #2c5aa0; }
+    .form-group { margin-bottom: 20px; }
+    label { display: block; margin-bottom: 6px; font-weight: bold; }
+    input, select, textarea {
+      width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;
+    }
+    button {
+      width: 100%; padding: 12px; background: #2c5aa0; color: white; border: none;
+      border-radius: 6px; font-size: 18px; cursor: pointer;
+    }
+    button:hover { background: #1e4a8a; }
+    .success { display: none; background: #d4edda; color: #155724; padding: 15px; border-radius: 6px; margin-top: 20px; text-align: center; }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <div class="logo">
-                    <i class="fas fa-child"></i>
-                    <h1>Мастерская речи</h1>
-                </div>
-                <div class="nav-links">
-                    <a href="#services">Услуги</a>
-                    <a href="#form">Запись</a>
-                    <a href="#about">О нас</a>
-                </div>
-            </nav>
-        </div>
-    </header>
+  <div class="container">
+    <h1>Мастерская речи</h1>
+    <p style="text-align: center; margin-bottom: 25px;">Запишитесь на консультацию к детскому логопеду (2–16 лет)</p>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h2>Мастерская речи</h2>
-            <p>Профессиональная логопедическая помощь для детей. Индивидуальный подход, современные методики и забота о каждом маленьком клиенте.</p>
-            <div class="hero-notice">
-                <i class="fas fa-info-circle"></i> Внимание: прием ведется только детей до 18 лет
-            </div>
-        </div>
-    </section>
+    <form id="consultationForm">
+      <div class="form-group">
+        <label for="parentName">ФИО родителя *</label>
+        <input type="text" id="parentName" name="parentName" required>
+      </div>
+      <div class="form-group">
+        <label for="childName">ФИО ребёнка *</label>
+        <input type="text" id="childName" name="childName" required>
+      </div>
+      <div class="form-group">
+        <label for="childAge">Возраст ребёнка *</label>
+        <select id="childAge" name="childAge" required>
+          <option value="">Выберите</option>
+          <option value="2-3 года">2–3 года</option>
+          <option value="4-5 лет">4–5 лет</option>
+          <option value="6-7 лет">6–7 лет</option>
+          <option value="8-10 лет">8–10 лет</option>
+          <option value="11-14 лет">11–14 лет</option>
+          <option value="15-16 лет">15–16 лет</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="phone">Телефон *</label>
+        <input type="tel" id="phone" name="phone" required placeholder="+7 ___ ___ __ __">
+      </div>
+      <div class="form-group">
+        <label for="email">Email (необязательно)</label>
+        <input type="email" id="email" name="email">
+      </div>
+      <div class="form-group">
+        <label for="service">Интересующая услуга *</label>
+        <select id="service" name="service" required>
+          <option value="">Выберите</option>
+          <option value="Речевая диагностика">Речевая диагностика</option>
+          <option value="Коррекция нарушения речи">Коррекция нарушения речи</option>
+          <option value="Логопедический массаж">Логопедический массаж</option>
+          <option value="Индивидуальные занятия">Индивидуальные занятия</option>
+          <option value="Профессиональное заключение">Профессиональное заключение</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">Комментарий</label>
+        <textarea id="message" name="message" rows="3" placeholder="Опишите проблему или пожелания..."></textarea>
+      </div>
+      <button type="submit">Отправить заявку</button>
+    </form>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <h2 class="section-title">Наши услуги для детей</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <i class="fas fa-stethoscope"></i>
-                    <h3>Речевая диагностика</h3>
-                    <p>Комплексное обследование речевых функций для выявления нарушений и разработки индивидуального плана коррекции у детей.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-child"></i>
-                    <h3>Коррекция нарушения речи у детей</h3>
-                    <p>Систематическая работа по устранению различных речевых нарушений у детей дошкольного и школьного возраста.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-file-alt"></i>
-                    <h3>Профессиональное заключение логопеда</h3>
-                    <p>Официальное заключение для школы, детского сада или медицинских учреждений с рекомендациями по дальнейшей работе.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-hands"></i>
-                    <h3>Логопедический массаж</h3>
-                    <p>Специализированный массаж артикуляционного аппарата для улучшения подвижности органов речи и коррекции звукопроизношения у детей.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                    <h3>Индивидуальные занятия</h3>
-                    <p>Персональные логопедические занятия с учетом индивидуальных особенностей и потребностей каждого ребенка.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div id="successMessage" class="success">
+      ✅ Спасибо! Ваша заявка принята. Мы свяжемся с вами в ближайшее время.
+    </div>
+  </div>
 
-    <!-- Form Section -->
-    <section id="form" class="form-section">
-        <div class="container">
-            <div class="form-container">
-                <h2 class="form-title">Записаться на консультацию</h2>
-                <p class="form-subtitle">Прием ведется только детей до 18 лет</p>
-                <form id="consultationForm">
-                    <div class="form-group">
-                        <label for="parentName">ФИО родителя/законного представителя *</label>
-                        <input type="text" id="parentName" name="parentName" required placeholder="Введите ваше полное имя">
-                    </div>
-                    <div class="form-group">
-                        <label for="childName">ФИО ребенка *</label>
-                        <input type="text" id="childName" name="childName" required placeholder="Введите полное имя ребенка">
-                    </div>
-                    <div class="form-group">
-                        <label for="childAge">Возраст ребенка *</label>
-                        <select id="childAge" name="childAge" required>
-                            <option value="">Выберите возраст</option>
-                            <option value="2-3 года">2-3 года</option>
-                            <option value="4-5 лет">4-5 лет</option>
-                            <option value="6-7 лет">6-7 лет</option>
-                            <option value="8-10 лет">8-10 лет</option>
-                            <option value="11-14 лет">11-14 лет</option>
-                            <option value="15-17 лет">15-17 лет</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Телефон для связи *</label>
-                        <input type="tel" id="phone" name="phone" required placeholder="+7 (___) ___-__-__">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="example@email.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="service">Интересующая услуга *</label>
-                        <select id="service" name="service" required>
-                            <option value="">Выберите услугу</option>
-                            <option value="Речевая диагностика">Речевая диагностика</option>
-                            <option value="Коррекция нарушения речи у детей">Коррекция нарушения речи у детей</option>
-                            <option value="Подготовка профессионального заключения логопеда">Подготовка профессионального заключения логопеда</option>
-                            <option value="Логопедический массаж">Логопедический массаж</option>
-                            <option value="Проведение индивидуальных логопедических занятий">Проведение индивидуальных логопедических занятий</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Дополнительная информация</label>
-                        <textarea id="message" name="message" placeholder="Опишите проблему, вопросы или пожелания..."></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Отправить заявку</button>
-                </form>
-                <div id="successMessage" class="success-message">
-                    <i class="fas fa-check-circle"></i>
-                    <p>Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <script>
+    document.getElementById('consultationForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">Мастерская речи</div>
-                <div class="footer-links">
-                    <a href="#services">Услуги для детей</a>
-                    <a href="#form">Запись на консультацию</a>
-                    <a href="#about">О нас</a>
-                </div>
-                <p class="copyright">© 2024 Мастерская речи. Все права защищены.</p>
-                <p class="copyright">Профессиональная логопедическая помощь только для детей до 18 лет</p>
-            </div>
-        </div>
-    </footer>
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData);
+      data.timestamp = new Date().toISOString();
 
-    <script>
-        // Phone input formatting
-        document.getElementById('phone').addEventListener('input', function(e) {
-            let input = e.target.value.replace(/\D/g, '');
-            if (input.length > 11) input = input.substring(0, 11);
-            
-            let formatted = '';
-            if (input.length > 0) {
-                formatted = '+7 ';
-                if (input.length > 1) formatted += '(' + input.substring(1, 4);
-                if (input.length >= 4) formatted += ') ' + input.substring(4, 7);
-                if (input.length >= 7) formatted += '-' + input.substring(7, 9);
-                if (input.length >= 9) formatted += '-' + input.substring(9, 11);
-            }
-            
-            e.target.value = formatted;
+      try {
+        // ⚠️ ЗАМЕНИТЕ ЭТОТ URL НА СВОЙ ПОСЛЕ ШАГА 4
+        const SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec';
+
+        const response = await fetch(SCRIPT_URL, {
+          method: 'POST',
+          body: JSON.stringify(data),
+          headers: { 'Content-Type': 'application/json' }
         });
 
-        // Form submission
-        document.getElementById('consultationForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-            
-            // Add timestamp
-            data.timestamp = new Date().toISOString();
-            
-            try {
-                // Show success message immediately (since we can't verify due to CORS)
-                document.getElementById('successMessage').style.display = 'block';
-                this.reset();
-                
-                // Scroll to success message
-                document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
-                
-                console.log('Form data would be sent to Google Sheets:', data);
-                
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже или свяжитесь с нами напрямую.');
-            }
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
+        if (response.ok) {
+          document.getElementById('successMessage').style.display = 'block';
+          e.target.reset();
+        } else {
+          alert('Ошибка при отправке. Попробуйте позже.');
+        }
+      } catch (err) {
+        alert('Не удалось отправить заявку. Проверьте подключение к интернету.');
+        console.error(err);
+      }
+    });
+  </script>
 </body>
 </html>
+
 
 
 
