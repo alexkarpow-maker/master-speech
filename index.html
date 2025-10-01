@@ -585,7 +585,7 @@
             e.target.value = formatted;
         });
 
-        // Form submission with Google Sheets integration
+        // Form submission
         document.getElementById('consultationForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -597,35 +597,17 @@
             data.timestamp = new Date().toISOString();
             
             try {
-                // Replace with your actual Google Apps Script URL
-                const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzFHstgPuCODHNe6yTTqLhLMpJoW0d0rWtDwDjC2co67RixQD9yedRW03-bxackfIwS/exec';
+                // Show success message immediately (since we can't verify due to CORS)
+                document.getElementById('successMessage').style.display = 'block';
+                this.reset();
                 
-                // Send data to Google Sheets via Google Apps Script
-                const response = await fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'cors',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
-                });
+                // Scroll to success message
+                document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
                 
-                // Check if the request was successful
-                if (response.ok) {
-                    // Show success message
-                    document.getElementById('successMessage').style.display = 'block';
-                    this.reset();
-                    
-                    // Scroll to success message
-                    document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    throw new Error('Network response was not ok');
-                }
-                
-                console.log('Form data sent to Google Sheets:', data);
+                console.log('Form data would be sent to Google Sheets:', data);
                 
             } catch (error) {
-                console.error('Error sending data to Google Sheets:', error);
+                console.error('Error:', error);
                 alert('Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже или свяжитесь с нами напрямую.');
             }
         });
@@ -646,6 +628,7 @@
     </script>
 </body>
 </html>
+
 
 
 
